@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Loading 💖</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffb6c1, #ff69b4, #ff1493);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 5px #000;
+    }
+
+    .progress-container {
+      width: 80%;
+      background-color: rgba(255,255,255,0.3);
+      border-radius: 25px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 30px;
+      background: linear-gradient(90deg, #ff69b4, #ff1493);
+      text-align: center;
+      line-height: 30px;
+      font-weight: bold;
+      transition: width 0.3s;
+      border-radius: 25px;
+    }
+
+    #loveButton {
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #fff;
+      color: #ff1493;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      margin-top: 20px;
+      box-shadow: 2px 2px 8px #000;
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .heart {
+      font-size: 2rem;
+      animation: fall 1.5s linear forwards;
+      position: absolute;
+    }
+
+    @keyframes fall {
+      0% {transform: translateY(0) scale(1);}
+      100% {transform: translateY(600px) rotate(360deg) scale(0);}
+    }
+  </style>
+</head>
+<body>
+  <h1>Love for Mimi💋🎀 Loading...</h1>
+
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar">0%</div>
+  </div>
+
+  <button id="loveButton">Add more love?</button>
+
+  <div class="hearts" id="heartsContainer"></div>
+
+  <script>
+    const progressBar = document.getElementById('progressBar');
+    const loveButton = document.getElementById('loveButton');
+    const heartsContainer = document.getElementById('heartsContainer');
+
+    let progress = 0;
+
+    // Simulate progress loading
+    const loading = setInterval(() => {
+      if (progress < 99) {
+        progress += Math.floor(Math.random() * 3) + 1; // random increase
+        if(progress > 99) progress = 99;
+        progressBar.style.width = progress + '%';
+        progressBar.textContent = progress + '%';
+      } else {
+        clearInterval(loading);
+        loveButton.style.display = 'inline-block';
+      }
+    }, 100);
+
+    // On button click
+    loveButton.addEventListener('click', () => {
+      progressBar.textContent = "Error: Capacity Exceeded 💔";
+      loveButton.style.display = 'none';
+
+      // Rain of hearts
+      for(let i=0; i<50; i++){
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.animationDuration = (Math.random()*1.5 + 1) + 's';
+        heart.textContent = '❤️';
+        heartsContainer.appendChild(heart);
+
+        // Remove after animation
+        setTimeout(() => heartsContainer.removeChild(heart), 2000);
+      }
+    });
+  </script>
+</body>
+</html>

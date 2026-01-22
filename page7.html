@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Cake 🎂 for Mimi 💖</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 5px #000;
+  }
+
+  #cake {
+    font-size: 8rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+  }
+
+  #cake:hover {
+    transform: scale(1.2);
+  }
+
+  #message {
+    font-size: 1.5rem;
+    margin-top: 20px;
+    min-height: 40px;
+  }
+
+  button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background-color: #fff;
+    color: #ff1493;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 2px 2px 8px #000;
+  }
+
+  .navigation {
+    margin-top: 30px;
+  }
+
+  .navigation a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+  <h1>🎂 Make a Wish, Mimi! 💖</h1>
+  <div id="cake">🎂</div>
+  <div id="message">Click the cake to blow the candle!</div>
+
+  <button id="nextBtn">Next 🎀</button>
+
+  <div class="navigation">
+    <a href="page4.html" class="prev">Previous</a>
+    <a href="page6.html" class="next">Next</a>
+  </div>
+
+  <script>
+    const cake = document.getElementById('cake');
+    const message = document.getElementById('message');
+    const nextBtn = document.getElementById('nextBtn');
+
+    cake.addEventListener('click', () => {
+      message.textContent = "Yay! Candle blown 🎉💖";
+      // Fun hearts animation
+      for(let i=0; i<20; i++){
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.style.position = 'absolute';
+        heart.style.left = (Math.random() * window.innerWidth) + 'px';
+        heart.style.top = (Math.random() * window.innerHeight/2) + 'px';
+        heart.style.fontSize = (Math.random()*20 + 20) + 'px';
+        heart.style.opacity = 0.8;
+        document.body.appendChild(heart);
+        setTimeout(() => document.body.removeChild(heart), 1500);
+      }
+    });
+
+    // Show Next button after clicking the cake
+    cake.addEventListener('click', () => {
+      nextBtn.style.display = 'inline-block';
+    });
+
+    nextBtn.addEventListener('click', () => {
+      window.location.href = "page6.html";
+    });
+
+    // Hide next button initially
+    nextBtn.style.display = 'none';
+  </script>
+</body>
+</html>

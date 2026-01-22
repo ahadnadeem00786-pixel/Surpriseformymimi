@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Hug 🤗💖</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  body {
+    background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 5px #000;
+  }
+
+  #hugArea {
+    width: 300px;
+    height: 300px;
+    background: url('https://i.imgur.com/F3fYF0R.png') no-repeat center/contain; /* Cute hug illustration */
+    cursor: pointer;
+    position: relative;
+  }
+
+  .heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp 1.5s ease-out forwards;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+  }
+
+  .navigation {
+    margin-top: 30px;
+  }
+
+  .navigation a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+</style>
+</head>
+<body>
+  <h1>Virtual Hug for Mimi 💖</h1>
+  <h2>Click the hug to feel my love 🤗</h2>
+  <div id="hugArea"></div>
+
+  <div class="navigation">
+    <a href="page8.html" class="prev">Previous</a>
+    <a href="page10.html" class="next">Next</a>
+  </div>
+
+  <script>
+    const hugArea = document.getElementById('hugArea');
+
+    hugArea.addEventListener('click', () => {
+      for(let i=0; i<10; i++){
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.style.left = Math.random()*80 + 'px';
+        heart.style.top = Math.random()*80 + 'px';
+        heart.textContent = '❤️';
+        hugArea.appendChild(heart);
+        setTimeout(() => hugArea.removeChild(heart), 1500);
+      }
+    });
+  </script>
+</body>
+</html>
